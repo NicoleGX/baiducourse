@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>任务三：表单（三）联动</title>
+
+	<style type="text/css">
+		body{
+			margin:10px;
+			font-size: 16px;
+			font-family: Arial;
+		}
+		.checkboxInline,.checkListInline{
+			width: 450px;
+			height: 30px;
+			margin:20px;
+		}
+		.schoolLableClass{
+			margin-left: 30px;
+			margin-right: 10px;
+			float: left;
+		}
+		..LableClass{
+			margin-left: 10px;
+			margin-right: 10px;
+			float: left;
+		}
+		.city-control{
+			margin-left: 10px;
+			margin-right: 10px;
+			width: 100px;
+			height: 30px;
+			border-radius: 4px;
+			border:2px solid #B0B0B0;
+		}
+		.school-control{
+			margin-left: 10px;
+			margin-right: 10px;
+			width: 200px;
+			height: 30px;
+			border-radius: 4px;
+			border:2px solid #B0B0B0;
+		}
+		.inputClass{
+			margin-left: 10px;
+			margin-right: 10px;
+			width: 320px;
+			height: 30px;
+			border-radius: 4px;
+			border:2px solid #B0B0B0;
+		}
+		.radioOne{
+			margin-left: 60px;
+			margin-right: 100px;
+		}
+	</style>
+</head>
+<body>
+	<form class="formClass">
+
+		<div class="checkboxInline">
+			  <label class="checkbox-inline radioOne">
+				    <input type="radio" name="optionsRadiosinline" id="optionsRadios1" value="inschoolstudent"  onclick="radioChecked()" checked>在校生
+			  </label>
+			  <label class="checkbox-inline">
+				    <input type="radio" name="optionsRadiosinline" id="optionsRadios2" value="outschoolstudent" onclick="radioChecked()">非在校生
+			  </label>
+		</div>
+
+		<div class="checkListInline">
+
+			<div id="inschool" style="display: none;">
+				<label class="schoolLableClass">学校</label>
+					<select class="city-control" id="CityId" onchange="cityChecked(this.options[this.options.selectedIndex].id)">
+						<option id="city1" name="option" selected>北京</option>
+						<option id="city2" name="option">成都</option>
+						<option id="city3" name="option">上海</option>
+						<option id="city4" name="option">厦门</option>
+						<option id="city5" name="option">浙江</option>
+					</select>
+					<select class="school-control" id="schoolNameId">
+						<option id="shcool1" selected>北京大学</option>
+						<option id="shcool2" >**大学</option>
+						<option id="shcool3" >**大学</option>
+						<option id="shcool4" >**大学</option>
+						<option id="shcool5" >**大学</option>
+					</select>
+			</div>
+			
+			<div id="outofschool" style="display: none;">
+				<label class="LableClass">就业单位</label>
+				<input class="inputClass" type="text">
+			</div>
+		</div>
+	</form>
+
+</body>
+</html>
+
+<script type="text/javascript">
+	
+	//判断哪个radio被选中
+	function radioChecked(){
+
+		var radioObj = document.getElementsByName("optionsRadiosinline");
+
+		for( i=0 ; i<radioObj.length ; i++ ){
+			
+			if(radioObj[i].checked){
+				// alert(radioObj[i].value);
+				if(radioObj[i].value == "inschoolstudent"){
+					document.getElementById("outofschool").style.display="none";
+					document.getElementById("inschool").style.display="block";
+				}
+				else if(radioObj[i].value == "outschoolstudent"){
+					document.getElementById("inschool").style.display="none";
+					document.getElementById("outofschool").style.display="block";
+				}
+			}
+			
+		}
+	}
+
+	//判断选中的城市输出学校
+	function cityChecked(id){
+
+		if( id == "city1" ){
+
+			var content = "<option id='shcool1' >北京大学</option><option id='shcool2' >**大学</option><option id='shcool3' >**大学</option><option id='shcool4' >**大学</option><option id='shcool5' >**大学</option>";
+			document.getElementById("schoolNameId").innerHTML=content;
+		}
+		else if( id == "city2" ){
+
+			var content = "<option id='shcool1' >四川大学</option><option id='shcool2' >**大学</option><option id='shcool3' >**大学</option><option id='shcool4' >**大学</option><option id='shcool5' >**大学</option>";
+			document.getElementById("schoolNameId").innerHTML=content;
+		}
+		else if( id == "city3" ){
+
+			var content = "<option id='shcool1' >复旦大学</option><option id='shcool2' >**大学</option><option id='shcool3' >**大学</option><option id='shcool4' >**大学</option><option id='shcool5' >**大学</option>";
+			document.getElementById("schoolNameId").innerHTML=content;
+		}
+		else if( id == "city4" ){
+
+			var content = "<option id='shcool1' >厦门大学</option><option id='shcool2' >**大学</option><option id='shcool3' >**大学</option><option id='shcool4' >**大学</option><option id='shcool5' >**大学</option>";
+			document.getElementById("schoolNameId").innerHTML=content;
+		}
+		else if( id == "city5" ){
+			alert("city1 is selected!");
+			var content = "<option id='shcool1' >浙江大学</option><option id='shcool2' >**大学</option><option id='shcool3' >**大学</option><option id='shcool4' >**大学</option><option id='shcool5' >**大学</option>";
+			document.getElementById("schoolNameId").innerHTML=content;
+		}
+
+	}
+
+	radioChecked();
+
+</script>
